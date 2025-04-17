@@ -3,7 +3,6 @@
 import List from "./components/List/List";
 import "./styles/utils/page.scss";
 
-import { Header } from "./components/Header/Header";
 import { Calculator } from "./components/calculator/Calculator";
 
 export default function Home() {

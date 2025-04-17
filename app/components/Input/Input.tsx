@@ -5,7 +5,7 @@ import styles from "./Input.module.scss";
 
 interface InputProps {
   type: "number" | "text";
-  value: number | string;
+  value?: number | string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   iconName?: string;

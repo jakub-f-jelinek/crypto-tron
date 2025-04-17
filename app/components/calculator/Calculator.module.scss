@@ -2,3 +2,40 @@
   display: flex;
   flex-direction: column;
 }
+
+.Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.HeaderInfo {
+  display: flex;
+  align-items: center;
+}
+
+.ItemImg {
+  width: 18px;
+  height: 18px;
+}
+
+.SubText {
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.Symbol {
+  text-transform: uppercase;
+  padding-right: 4px;
+  font-weight: 600;
+}
+
+.Row {
+  display: flex;
+  padding-block: 4px;
+
+  .SubText {
+    color: #808893;
+  }
+}

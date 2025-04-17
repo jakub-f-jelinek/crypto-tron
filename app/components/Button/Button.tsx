@@ -10,6 +10,7 @@ interface ButtonProps {
   iconName?: string;
   size?: "sm" | "md" | "iconBox";
   iconPositon?: "before" | "after";
+  iconColor?: "light" | "dark";
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -20,6 +21,7 @@ export const Button: React.FC<ButtonProps> = ({
   iconName,
   size,
   iconPositon,
+  iconColor,
 }) => {
   return (
     <button
@@ -50,7 +52,7 @@ export const Button: React.FC<ButtonProps> = ({
         <span className={styles.ButtonTitle}>{title}</span>
         {iconName && (
           <span className={styles.Icon}>
-            <Icon name={iconName} />
+            <Icon name={iconName} color={iconColor} />
           </span>
         )}
       </div>

@@ -7,6 +7,7 @@ import styles from "./Calculator.module.scss";
 import { useEffect, useState } from "react";
 import { Input } from "../Input/Input";
 import { Card } from "../Card/Card";
+import classNames from "classnames";
 
 interface HandleCountParams {
   id: string;
@@ -104,30 +105,69 @@ export const Calculator = () => {
           <Card
             key={item.id}
             id={item.id}
-            title={item.name}
+            img={item.image}
             headerElements={[
-              <Button
-                variant="link"
-                size="iconBox"
-                iconName="IoClose"
-                onClick={() => handleRemove(item.id)}
-              />,
+              <div className={styles.Header}>
+                <div className={styles.HeaderInfo}>
+                  <img
+                    className={styles.ItemImg}
+                    src={item.image}
+                    alt={item.name}
+                  />
+                  <span className={classNames(styles.SubText, styles.Symbol)}>
+                    {item.symbol}
+                  </span>
+                  <span className={styles.SubText}>
+                    {item.current_price} CZK / 1 jednotku
+                  </span>
+                </div>
+                <Button
+                  variant="link"
+                  size="iconBox"
+                  iconName="IoClose"
+                  iconColor="light"
+                  onClick={() => handleRemove(item.id)}
+                />
+              </div>,
+            ]}
+            contentElements={[
+              <div className={styles.Content}>
+                <div>
+                  <span className={styles.SubText}>Celková hodnota coinu</span>
+                  <span className={classNames(styles.Row)}>
+                    <h3>{item.totalValue}</h3>
+                    <span className={classNames(styles.SubText)}>CZK</span>
+                  </span>
+                </div>
+                <div className={styles.Number}>
+                  <span className={styles.SubText}>Počet jednotek</span>
+                  <Input
+                    type="number"
+                    value={item.count}
+                    onChange={(e) =>
+                      handleCount({ id: item.id, count: e.target.value })
+                    }
+                  />
+                  <div>{item.itemPercentage} %</div>
+                  <span className={styles.SubText}>Poččáteční investice</span>
+                  <Input
+                    type="number"
+                    onChange={(e) =>
+                      handleCount({
+                        id: item.id,
+                        count: item.count,
+                        startInvestmentValue: Number(e.target.value),
+                      })
+                    }
+                  />
+                  <div>Celkový profit: {item.profit}</div>
+                </div>
+              </div>,
             ]}
           />
           //     <ListItem
-          //       key={item.id}
-          //       id={item.id}
-          //       title={item.name}
-          //       price={price}
-          //       img={item.image}
           //       classNameElements={styles.CardItem}
-          //       elements={[
-          //         <span>Celková hodnota coinu: {item.totalValue}</span>,
-          //         <Button
-          //           title="Odebrat"
-          //           onClick={() => handleRemove(item.id)}
-          //           variant="primary"
-          //         />,
+
           //         <div className={styles.Row}>
           //           <Button
           //             title="+1"
@@ -149,22 +189,6 @@ export const Calculator = () => {
           //             size="iconBox"
           //           />
           //         </div>,
-          //         <label htmlFor="">Počet jednotek</label>,
-          //         <input type="number" min={0} />,
-          //         <div>{item.itemPercentage} %</div>,
-          //         <label htmlFor="">Počáteční investice</label>,
-          //         <input
-          //           type="number"
-          //           min={0}
-          //           onChange={(e) =>
-          //             handleCount({
-          //               id: item.id,
-          //               count: item.count,
-          //               startInvestmentValue: Number(e.target.value),
-          //             })
-          //           }
-          //         />,
-          //         <div>Celkový profit: {item.profit}</div>,
           //       ]}
           //     />
         );

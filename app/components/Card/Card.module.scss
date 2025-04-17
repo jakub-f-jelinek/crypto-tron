@@ -2,4 +2,23 @@
 
 .Card {
   background-color: $background-color;
+  padding: 20px;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+.Header {
+  display: flex;
+}
+
+.TitleWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+
+  .SubTitle {
+    font-size: 12px;
+    font-weight: 100;
+    color: #808893;
+  }
 }

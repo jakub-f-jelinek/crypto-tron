@@ -1,0 +1,42 @@
+.Container {
+  padding: 20px 40px;
+}
+
+.Header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 8px;
+
+  span {
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #808893;
+  }
+}
+
+.ItemImg {
+  width: 24px;
+  height: 24px;
+}
+
+.SubText {
+  font-size: 14px;
+  color: #808893;
+}
+
+.Col,
+.Row {
+  padding-block: 8px;
+  display: flex;
+  gap: 4px;
+}
+
+.Col {
+  flex-direction: column;
+}
+
+.Main {
+  display: flex;
+  flex-wrap: wrap;
+}
