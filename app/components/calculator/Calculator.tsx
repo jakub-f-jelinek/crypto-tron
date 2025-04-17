@@ -1,10 +1,12 @@
 "use client";
 
-import { useData } from "../hooks/Provider";
-import { ListItem } from "../components/List/ListItem/ListItem";
-import { Button } from "../components/Button/Button";
+import { useData } from "../../hooks/Provider";
+import { ListItem } from "../List/ListItem/ListItem";
+import { Button } from "../Button/Button";
 import styles from "./Calculator.module.scss";
 import { useEffect, useState } from "react";
+import { Input } from "../Input/Input";
+import { Card } from "../Card/Card";
 
 interface HandleCountParams {
   id: string;
@@ -13,7 +15,7 @@ interface HandleCountParams {
   startInvestmentValue?: number;
 }
 
-export default function Calculator() {
+export const Calculator = () => {
   const { items, removeItem, updateItem } = useData();
 
   const handleRemove = (id: string) => {
@@ -99,56 +101,74 @@ export default function Calculator() {
         const priceFormatted = new Intl.NumberFormat("cs-CZ").format(price);
 
         return (
-          <ListItem
+          <Card
             key={item.id}
             id={item.id}
             title={item.name}
-            price={price}
-            classNameElements={styles.ListItemElements}
-            elements={[
-              <span>Celková hodnota coinu: {item.totalValue}</span>,
+            headerElements={[
               <Button
-                title="Odebrat"
+                variant="link"
+                size="iconBox"
+                iconName="IoClose"
                 onClick={() => handleRemove(item.id)}
-                variant="primary"
               />,
-              <Button
-                title="+1"
-                onClick={() => handleCount({ id: item.id, step: "increase" })}
-                variant="primary"
-              />,
-              <Button
-                title="-1"
-                onClick={() => handleCount({ id: item.id, step: "decrease" })}
-                variant="primary"
-              />,
-              <label htmlFor="">Počet jednotek</label>,
-              <input
-                type="number"
-                min={0}
-                value={item.count}
-                onChange={(e) =>
-                  handleCount({ id: item.id, count: e.target.value })
-                }
-              />,
-              <div>{item.itemPercentage} %</div>,
-              <label htmlFor="">Počáteční investice</label>,
-              <input
-                type="number"
-                min={0}
-                onChange={(e) =>
-                  handleCount({
-                    id: item.id,
-                    count: item.count,
-                    startInvestmentValue: Number(e.target.value),
-                  })
-                }
-              />,
-              <div>Celkový profit: {item.profit}</div>,
             ]}
           />
+          //     <ListItem
+          //       key={item.id}
+          //       id={item.id}
+          //       title={item.name}
+          //       price={price}
+          //       img={item.image}
+          //       classNameElements={styles.CardItem}
+          //       elements={[
+          //         <span>Celková hodnota coinu: {item.totalValue}</span>,
+          //         <Button
+          //           title="Odebrat"
+          //           onClick={() => handleRemove(item.id)}
+          //           variant="primary"
+          //         />,
+          //         <div className={styles.Row}>
+          //           <Button
+          //             title="+1"
+          //             onClick={() => handleCount({ id: item.id, step: "increase" })}
+          //             variant="primary"
+          //             size="iconBox"
+          //           />
+          //           <Input
+          //             type="number"
+          //             value={item.count}
+          //             onChange={(e) =>
+          //               handleCount({ id: item.id, count: e.target.value })
+          //             }
+          //           />
+          //           <Button
+          //             title="-1"
+          //             onClick={() => handleCount({ id: item.id, step: "decrease" })}
+          //             variant="primary"
+          //             size="iconBox"
+          //           />
+          //         </div>,
+          //         <label htmlFor="">Počet jednotek</label>,
+          //         <input type="number" min={0} />,
+          //         <div>{item.itemPercentage} %</div>,
+          //         <label htmlFor="">Počáteční investice</label>,
+          //         <input
+          //           type="number"
+          //           min={0}
+          //           onChange={(e) =>
+          //             handleCount({
+          //               id: item.id,
+          //               count: item.count,
+          //               startInvestmentValue: Number(e.target.value),
+          //             })
+          //           }
+          //         />,
+          //         <div>Celkový profit: {item.profit}</div>,
+          //       ]}
+          //     />
         );
       })}
     </div>
   );
-}
+};

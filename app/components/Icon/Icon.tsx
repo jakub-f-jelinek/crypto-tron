@@ -2,6 +2,7 @@ import * as IoIcons from "react-icons/io5";
 import * as FaIcons from "react-icons/fa";
 import * as CiIcons from "react-icons/ci";
 import * as MdIcons from "react-icons/md";
+import * as HiIcons from "react-icons/hi";
 import { IconType } from "react-icons";
 
 type DynamicIconProps = {
@@ -16,6 +17,7 @@ const iconPacks: Record<string, Record<string, IconType>> = {
   Fa: FaIcons,
   Ci: CiIcons,
   Md: MdIcons,
+  Hi: HiIcons,
 };
 
 export const Icon = ({

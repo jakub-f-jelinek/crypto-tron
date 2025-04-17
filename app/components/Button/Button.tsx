@@ -4,11 +4,12 @@ import { Icon } from "../Icon/Icon";
 
 interface ButtonProps {
   title?: string;
-  onClick: () => void;
-  variant: "primary" | "secondary" | "accend";
+  onClick?: () => void;
+  variant: "primary" | "secondary" | "link";
   disabled?: boolean;
   iconName?: string;
   size?: "sm" | "md" | "iconBox";
+  iconPositon?: "before" | "after";
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ export const Button: React.FC<ButtonProps> = ({
   disabled,
   iconName,
   size,
+  iconPositon,
 }) => {
   return (
     <button
@@ -29,7 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
         {
           [styles.Primary]: variant === "primary",
           [styles.Secondary]: variant === "secondary",
-          [styles.Accend]: variant === "accend",
+          [styles.Link]: variant === "link",
         },
         {
           [styles.Medium]: size === "md",
@@ -39,7 +41,12 @@ export const Button: React.FC<ButtonProps> = ({
         styles.button
       )}
     >
-      <div className={styles.ButtonInner}>
+      <div
+        className={classNames(
+          styles.ButtonInner,
+          iconPositon === "before" ? styles.ReverseCol : ""
+        )}
+      >
         <span className={styles.ButtonTitle}>{title}</span>
         {iconName && (
           <span className={styles.Icon}>

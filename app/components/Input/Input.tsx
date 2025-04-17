@@ -4,13 +4,15 @@ import { Icon } from "../Icon/Icon";
 import styles from "./Input.module.scss";
 
 interface InputProps {
-  value: string;
+  type: "number" | "text";
+  value: number | string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   iconName?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
+  type,
   value,
   onChange,
   placeholder,
@@ -21,7 +23,8 @@ export const Input: React.FC<InputProps> = ({
       {iconName && <Icon name={iconName} />}
       <input
         className={styles.Input}
-        type="text"
+        type={type === "number" ? "number" : "text"}
+        min={type === "number" ? 0 : ""}
         onChange={onChange}
         value={value}
         placeholder={placeholder}

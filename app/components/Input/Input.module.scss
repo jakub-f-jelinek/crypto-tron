@@ -1,7 +1,9 @@
+@import "../../styles/utils/variables.scss";
+
 .InputWrapper {
   width: 100%;
   display: flex;
-  border-bottom: 1px solid #fff;
+  border-bottom: 1px solid $border-color;
   align-items: center;
   margin-bottom: 8px;
 }

@@ -24,6 +24,7 @@ export const FilterBar: React.FC<FilterBarProps> = ({
   return (
     <div className={styles.Wrapper}>
       <Input
+        type="text"
         onChange={onChange}
         value={value}
         iconName="FaSearch"

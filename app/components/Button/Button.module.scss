@@ -17,7 +17,11 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  gap: 4px;
+  gap: 8px;
+
+  &.ReverseCol {
+    flex-direction: row-reverse;
+  }
 }
 
 .Icon {
@@ -77,4 +81,9 @@ button:disabled {
   .ButtonInner {
     gap: 0;
   }
+}
+
+.Button.Link {
+  background-color: transparent;
+  border: none;
 }

@@ -1,9 +1,11 @@
+@import "../../../styles/utils/variables.scss";
+
 .Item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #fafafa;
-  padding-block: 8px;
+  border-bottom: 1px solid $border-color;
+  padding: 8px;
 
   span {
     align-self: center;
@@ -11,7 +13,7 @@
   }
 
   &:hover {
-    background-color: #222222;
+    background-color: #34416a47;
   }
 }
 

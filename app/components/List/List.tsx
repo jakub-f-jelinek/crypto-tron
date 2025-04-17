@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import "../../styles/utils/page.scss";
 import { Input } from "../Input/Input";
 import { FilterBar } from "../FilterBar/FilterBar";
+import Link from "next/link";
 
 export default function List() {
   const [search, setSearch] = useState("");
@@ -95,13 +96,14 @@ export default function List() {
                   iconName="MdAdd"
                 />
 
-                <Button
-                  key="detail"
-                  title="Detail"
-                  onClick={() => handleAdd(item)}
-                  variant="secondary"
-                  iconName="MdArrowForward"
-                />
+                <Link href={`/items/${item.id}`}>
+                  <Button
+                    key="detail"
+                    title="Detail"
+                    variant="secondary"
+                    iconName="MdArrowForward"
+                  />
+                </Link>
               </div>,
             ]}
           />
