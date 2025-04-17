@@ -1,0 +1,55 @@
+.Item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #fafafa;
+  padding-block: 8px;
+
+  span {
+    align-self: center;
+    font-size: 14px;
+  }
+
+  &:hover {
+    background-color: #222222;
+  }
+}
+
+.Position {
+  min-width: 30px;
+}
+
+.Title {
+  min-width: 128px;
+  max-width: 128px;
+}
+
+.Symbol {
+  text-transform: uppercase;
+  color: #b4a6a6;
+  min-width: 75px;
+}
+
+.Price,
+.PriceChange {
+  min-width: 130px;
+}
+
+.ItemImg {
+  width: 18px;
+  height: 18px;
+}
+
+.Info {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.Is--Plus {
+  color: rgb(22, 199, 132);
+}
+
+.Is--Minus {
+  color: rgb(234 66 67);
+}

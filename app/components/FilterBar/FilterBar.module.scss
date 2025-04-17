@@ -1,0 +1,17 @@
+.Wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 4px;
+  overflow-x: auto;
+
+  input {
+    flex: 1 1 auto;
+    // min-width: 0;
+  }
+
+  button {
+    height: 32px;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+}

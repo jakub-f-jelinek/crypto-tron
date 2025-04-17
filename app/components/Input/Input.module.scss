@@ -1,0 +1,20 @@
+.InputWrapper {
+  width: 100%;
+  display: flex;
+  border-bottom: 1px solid #fff;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.Input {
+  border: 0;
+  padding: 10px 20px;
+  background-color: transparent;
+
+  &:focus {
+    outline: none;
+  }
+  &::placeholder {
+    color: #b4a6a6;
+  }
+}

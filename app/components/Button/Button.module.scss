@@ -1,0 +1,80 @@
+@import "../../styles/utils/variables.scss";
+
+.Button {
+  display: inline-block;
+  padding: 8px 24px;
+  background-color: $component-color;
+  color: $template-color;
+  border: 1px solid $component-color;
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.ButtonInner {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 4px;
+}
+
+.Icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.Primary.Disabled {
+  background-color: #b7af62;
+  border-color: #b7af62;
+}
+
+.Button .ButtonTitle {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+}
+
+button:disabled {
+  &:hover {
+    cursor: not-allowed;
+  }
+}
+
+.Button.Secondary {
+  background-color: transparent;
+
+  .ButtonTitle,
+  .Icon {
+    color: #fff;
+  }
+}
+
+.Button.Primary,
+.Button.Secondary {
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #fff;
+    border-color: #fff;
+
+    .ButtonTitle {
+      color: #000;
+    }
+  }
+}
+
+.Button.Secondary:hover .Icon {
+  color: #000;
+}
+
+.IconBox {
+  padding: 8px;
+
+  .ButtonInner {
+    gap: 0;
+  }
+}

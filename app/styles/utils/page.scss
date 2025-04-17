@@ -1,0 +1,36 @@
+.Page {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Container {
+  display: flex;
+}
+
+.FlexCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.FlexRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.GapMd {
+  gap: 8px;
+}
+
+.col-70 {
+  width: 70%;
+}
+
+.col-30 {
+  width: 30%;
+}
+
+.p-block {
+  padding: 20px;
+}
