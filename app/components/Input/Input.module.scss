@@ -3,6 +3,7 @@
 .InputWrapper {
   width: 100%;
   display: flex;
+  align-items: center;
   border: 1px solid $border-color;
   align-items: center;
   margin-bottom: 8px;
@@ -11,6 +12,7 @@
 }
 
 .Input {
+  width: 100%;
   border: 0;
   padding: 10px 20px;
   background-color: transparent;
@@ -21,4 +23,8 @@
   &::placeholder {
     color: #b4a6a6;
   }
+}
+
+.IconWrapper {
+  padding-left: 22px;
 }

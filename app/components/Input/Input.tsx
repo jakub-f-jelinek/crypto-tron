@@ -1,5 +1,6 @@
 "use client";
 
+import classNames from "classnames";
 import { Icon } from "../Icon/Icon";
 import styles from "./Input.module.scss";
 
@@ -9,6 +10,7 @@ interface InputProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
   iconName?: string;
+  className?: string;
 }
 
 export const Input: React.FC<InputProps> = ({
@@ -17,10 +19,15 @@ export const Input: React.FC<InputProps> = ({
   onChange,
   placeholder,
   iconName,
+  className,
 }) => {
   return (
-    <div className={styles.InputWrapper}>
-      {iconName && <Icon name={iconName} />}
+    <div className={classNames(styles.InputWrapper, className)}>
+      {iconName && (
+        <div className={styles.IconWrapper}>
+          <Icon name={iconName} />
+        </div>
+      )}
       <input
         className={styles.Input}
         type={type === "number" ? "number" : "text"}

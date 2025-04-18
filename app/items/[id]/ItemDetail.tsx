@@ -7,88 +7,17 @@ import { CoinData } from "@/app/utils/types";
 import { Card } from "@/app/components/Card/Card";
 import { Icon } from "@/app/components/Icon/Icon";
 import { Text } from "@/app/components/Text/Text";
+import { Button } from "@/app/components/Button/Button";
+import { CalculatorCard } from "@/app/components/Calculator/CalculatorCard";
+import { useCallback } from "react";
 
 import styles from "./ItemDetail.module.scss";
 import "../../styles/utils/page.scss";
 import classNames from "classnames";
-import { Button } from "@/app/components/Button/Button";
-import { Input } from "@/app/components/Input/Input";
-import { HandleCountParams } from "@/app/components/Calculator/Calculator";
 
 export default function ItemDetail({ id }: { id: string }) {
   const { isLoading, error, data } = useFetchData();
-  const { items, removeItem, updateItem } = useData();
-
-  const handleRemove = (id: string) => {
-    removeItem(id);
-  };
-
-  const handleCount = ({
-    id,
-    count,
-    step,
-    startInvestmentValue,
-  }: HandleCountParams) => {
-    const currentItem = items.find((item) => item.id === id);
-    const currentCount = currentItem?.count;
-    console.log(currentItem);
-
-    if (step === "increase") {
-      if (currentCount || currentCount === 0) {
-        const newCount = currentCount + 1;
-        const newValue = (currentItem?.current_price ?? 0) * newCount;
-
-        const startValue =
-          startInvestmentValue ?? currentItem?.startInvestmentValue ?? 0;
-        const profitCoin = newValue - startValue;
-
-        updateItem({
-          id,
-          count: newCount,
-          totalValue: newValue,
-          startInvestmentValue:
-            startInvestmentValue ?? currentItem?.startInvestmentValue,
-          profitCoin,
-        });
-      }
-    } else if (step === "decrease") {
-      if (currentCount) {
-        const newCount = currentCount - 1;
-        const newValue = currentItem.current_price * newCount;
-        const startValue =
-          startInvestmentValue ?? currentItem.startInvestmentValue ?? 0;
-        const profitCoin = newValue - startValue;
-
-        updateItem({
-          id,
-          count: newCount,
-          totalValue: newValue,
-          startInvestmentValue:
-            startInvestmentValue ?? currentItem.startInvestmentValue,
-          profitCoin,
-        });
-      }
-    } else {
-      const numberCount = Number(count);
-      const itemPrice = currentItem?.current_price ?? 0;
-
-      if (isNaN(numberCount)) return;
-
-      const totalValue = itemPrice * numberCount;
-      const startValue =
-        startInvestmentValue ?? currentItem?.startInvestmentValue ?? 0;
-      const profitCoin = totalValue - startValue;
-
-      updateItem({
-        id,
-        count: numberCount,
-        totalValue,
-        startInvestmentValue:
-          startInvestmentValue ?? currentItem?.startInvestmentValue,
-        profitCoin,
-      });
-    }
-  };
+  const { items, addItem } = useData();
 
   if (isLoading) return <div>Is loading...</div>;
   if (error) return <div>Error</div>;
@@ -97,16 +26,42 @@ export default function ItemDetail({ id }: { id: string }) {
   const itemCalculator = items.find((item: CoinData) => item.id === id);
   console.log(item);
 
+  const handleAdd = useCallback(
+    (item: CoinData) => {
+      addItem(item);
+    },
+    [addItem]
+  );
+
   return (
     <div className={styles.Container}>
       <div className={styles.Header}>
+        <Button
+          title="Zpět"
+          variant="link"
+          iconName="FaArrowLeft"
+          iconPositon="before"
+        />
         <div className={classNames("col-33", styles.HeaderInfo)}>
           <img className={styles.ItemImg} src={item.image} alt={item.name} />
           <span>{item.symbol}</span>
         </div>
         <h1>{item.name}</h1>
         {/* calculator item component */}
-        <div className="col-66"></div>
+        <div className="col-66">
+          {itemCalculator !== undefined ? (
+            <CalculatorCard item={itemCalculator} />
+          ) : (
+            <Button
+              variant="primary"
+              title="Přidat"
+              iconName="FaPLus"
+              iconPositon="after"
+              iconColor="dark"
+              onClick={() => handleAdd(item)}
+            />
+          )}
+        </div>
       </div>
 
       <div className={styles.Main}>

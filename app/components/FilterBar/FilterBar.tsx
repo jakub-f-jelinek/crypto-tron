@@ -28,7 +28,8 @@ export const FilterBar: React.FC<FilterBarProps> = ({
         onChange={onChange}
         value={value}
         iconName="FaSearch"
-        placeholder={placeholder}
+        placeholder="Hledat..."
+        className={styles.Input}
       />
       <Button
         onClick={buttonSortDesc}

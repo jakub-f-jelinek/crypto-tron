@@ -28,7 +28,7 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
         id={item.id}
         img={item.image}
         headerElements={[
-          <div className={styles.Header}>
+          <div key="cardHeader" className={styles.Header}>
             <div className={styles.HeaderInfo}>
               <img
                 className={styles.ItemImg}
@@ -52,7 +52,7 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
           </div>,
         ]}
         contentElements={[
-          <div className={styles.Content}>
+          <div key="contentElements" className={styles.Content}>
             <Text
               type="span"
               subtitleSize="sm"
