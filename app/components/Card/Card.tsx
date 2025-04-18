@@ -6,6 +6,7 @@ import styles from "./Card.module.scss";
 interface CardProps {
   id?: string;
   title?: string | number;
+  titleSize?: "sm" | "md" | "lg" | "xl";
   subTitle?: string | number;
   img?: string;
   className?: string;
@@ -18,6 +19,7 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({
   id,
   title,
+  titleSize = "md",
   subTitle,
   className,
   headerElements = [],
@@ -33,7 +35,9 @@ export const Card: React.FC<CardProps> = ({
     >
       <div className={styles.Header}>{headerElements}</div>
       <div className={styles.TitleWrapper}>
-        <h4 className={styles.Title}>{title}</h4>
+        <h4 className={classNames(styles.Title, styles[`Title--${titleSize}`])}>
+          {title}
+        </h4>
         <span className={styles.SubTitle}>{subTitle}</span>
       </div>
       <div className={styles.Content}>{contentElements}</div>

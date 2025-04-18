@@ -6,16 +6,20 @@ import { Button } from "../../components/Button/Button";
 import { ListItem } from "./ListItem/ListItem";
 import { CoinData } from "@/app/utils/types";
 import { useMemo, useState, useCallback } from "react";
-import "../../styles/utils/page.scss";
 import { FilterBar } from "../FilterBar/FilterBar";
 import Link from "next/link";
+import { Chart } from "../Chart/Chart";
+import { Card } from "../Card/Card";
+import { Text } from "../Text/Text";
+import "../../styles/utils/page.scss";
+import styles from "./List.module.scss";
 
 export default function List() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
 
   const { data, isLoading, error } = useFetchData();
-  const { items, addItem, totalCalculatorValue } = useData();
+  const { items, addItem, totalCalculatorValue, totalProfit } = useData();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -53,10 +57,69 @@ export default function List() {
   if (error) return <div>{error.message}</div>;
 
   const total = totalCalculatorValue();
+  const sumProfit = totalProfit();
 
   return (
     <>
-      <span>{total}</span>
+      <div className={styles.IntroWrapper}>
+        <div className={styles.Card}>
+          <Card
+            title={items.length}
+            titleSize="xl"
+            theme="light"
+            headerElements={[
+              <Text
+                type="span"
+                size="sm"
+                subtitlePosition="up"
+                subtitle="Počet kryptoměn v kalkulačce"
+              />,
+            ]}
+          />
+        </div>
+        <div className={styles.Card}>
+          <Card
+            title={total !== null && total > 0 ? total : 0}
+            titleSize="xl"
+            subTitle="CZK"
+            theme="light"
+            headerElements={[
+              <Text
+                type="span"
+                size="sm"
+                subtitlePosition="up"
+                subtitle="Celková hodnota kalkulačky"
+              />,
+            ]}
+            footerElements={[
+              <Text
+                type="span"
+                size="sm"
+                subtitlePosition="up"
+                subtitle="Celková profitní hodnota"
+                title={
+                  sumProfit !== null && sumProfit > 0 ? sumProfit.toFixed(2) : 0
+                }
+              />,
+            ]}
+          />
+        </div>
+        <div className={styles.Card}>
+          <Card
+            theme="light"
+            headerElements={[
+              <Text
+                type="span"
+                size="sm"
+                subtitlePosition="up"
+                subtitle="Zisk kalkulačky"
+              />,
+            ]}
+            contentElements={[<Chart data={items} />]}
+          />
+        </div>
+      </div>
+
       <FilterBar
         value={search}
         onChange={handleSearch}

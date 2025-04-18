@@ -27,6 +27,10 @@ main {
   justify-content: center;
 }
 
+.Row {
+  display: flex;
+}
+
 .GapMd {
   gap: 8px;
 }

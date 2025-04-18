@@ -3,6 +3,7 @@
 .Card {
   padding: 20px;
   border-radius: 8px;
+  height: 100%;
   flex: 1;
 }
 
@@ -28,4 +29,20 @@
 
 .Theme--light {
   background-color: $background-color-light;
+}
+
+.Title--sm {
+  font-size: 14px;
+}
+
+.Title--md {
+  font-size: 18px;
+}
+
+.Title--lg {
+  font-size: 24px;
+}
+
+.Title--xl {
+  font-size: 36px;
 }

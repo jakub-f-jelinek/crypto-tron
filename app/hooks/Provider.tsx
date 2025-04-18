@@ -9,6 +9,7 @@ interface DataContextType {
   removeItem: (id: string) => void;
   updateItem: (updatedItem: updatedItems) => void;
   totalCalculatorValue: () => number | null;
+  totalProfit: () => number | null;
 }
 
 interface Props {
@@ -96,9 +97,22 @@ export const DataProvider = ({ children }: Props) => {
     return sumTotal;
   };
 
+  const totalProfit = () => {
+    const sumProfit = items.reduce((acc, item) => acc + (item.profit ?? 0), 0);
+
+    return sumProfit;
+  };
+
   return (
     <DataContext.Provider
-      value={{ items, addItem, removeItem, updateItem, totalCalculatorValue }}
+      value={{
+        items,
+        addItem,
+        removeItem,
+        updateItem,
+        totalCalculatorValue,
+        totalProfit,
+      }}
     >
       {children}
     </DataContext.Provider>
