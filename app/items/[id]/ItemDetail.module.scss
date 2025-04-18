@@ -1,18 +1,26 @@
+@import "../../styles/utils/variables.scss";
+
 .Container {
   padding: 20px 40px;
 }
 
 .Header {
   display: flex;
-  align-items: center;
-  gap: 4px;
-  padding-bottom: 8px;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 24px;
 
   span {
     text-transform: uppercase;
     font-size: 14px;
-    color: #808893;
+    color: $light-text;
   }
+}
+
+.HeaderInfo {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .ItemImg {
@@ -22,7 +30,7 @@
 
 .SubText {
   font-size: 14px;
-  color: #808893;
+  color: $light-text;
 }
 
 .Col,
@@ -38,5 +46,6 @@
 
 .Main {
   display: flex;
+  gap: 8px;
   flex-wrap: wrap;
 }

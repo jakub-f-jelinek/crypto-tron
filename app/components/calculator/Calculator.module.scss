@@ -1,3 +1,5 @@
+@import "../../styles/utils/variables.scss";
+
 .CardItem {
   display: flex;
   flex-direction: column;
@@ -38,4 +40,10 @@
   .SubText {
     color: #808893;
   }
+}
+
+.Divider {
+  width: 100%;
+  height: 1px;
+  border: 0.5px solid $border-color;
 }

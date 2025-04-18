@@ -15,7 +15,7 @@ export default function List() {
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
 
   const { data, isLoading, error } = useFetchData();
-  const { items, addItem } = useData();
+  const { items, addItem, totalCalculatorValue } = useData();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -52,8 +52,11 @@ export default function List() {
   if (isLoading) return <div>loading...</div>;
   if (error) return <div>{error.message}</div>;
 
+  const total = totalCalculatorValue();
+
   return (
     <>
+      <span>{total}</span>
       <FilterBar
         value={search}
         onChange={handleSearch}

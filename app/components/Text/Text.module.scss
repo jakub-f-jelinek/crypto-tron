@@ -1,0 +1,85 @@
+@import "../../styles/utils/variables.scss";
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.Title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.Subtitle {
+  color: #808893;
+  margin-top: 0.25rem;
+}
+
+.sm {
+  font-size: 1rem;
+  font-weight: normal;
+}
+
+.md {
+  font-size: 1.5rem;
+}
+
+.xl {
+  font-size: 2rem;
+}
+
+.Subtitle--sm {
+  font-size: 0.75rem;
+  font-weight: normal;
+}
+
+.Subtitle--md {
+  font-size: 1rem;
+}
+
+.Subtitle--xl {
+  font-size: 1.25rem;
+}
+
+.Wrapper.TextPosition--before {
+  display: flex;
+  flex-direction: row;
+}
+
+.Wrapper.TextPosition--after {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+
+  .Subtitle {
+    padding-left: 4px;
+  }
+}
+
+.Wrapper.TextPosition--up {
+  display: flex;
+  flex-direction: column-reverse;
+
+  .Subtitle {
+    padding-bottom: 4px;
+  }
+}
+
+.Wrapper.TextPosition--down {
+  display: flex;
+  flex-direction: column;
+}
+
+.isNegative {
+  .Title,
+  .Subtitle {
+    color: $warrning-text;
+  }
+}
+
+.isPositive {
+  .Title,
+  .Subtitle {
+    color: $success-text;
+  }
+}

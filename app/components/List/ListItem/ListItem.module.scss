@@ -28,7 +28,7 @@
 
 .Symbol {
   text-transform: uppercase;
-  color: #808893;
+  color: $light-text;
   min-width: 75px;
 }
 
@@ -49,9 +49,9 @@
 }
 
 .Is--Plus {
-  color: rgb(22, 199, 132);
+  color: $success-text;
 }
 
 .Is--Minus {
-  color: rgb(234 66 67);
+  color: $warrning-text;
 }

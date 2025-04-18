@@ -1,10 +1,9 @@
 @import "../../styles/utils/variables.scss";
 
 .Card {
-  background-color: $background-color;
   padding: 20px;
   border-radius: 8px;
-  margin: 8px;
+  flex: 1;
 }
 
 .Header {
@@ -21,4 +20,12 @@
     font-weight: 100;
     color: #808893;
   }
+}
+
+.Theme--dark {
+  background-color: $background-color;
+}
+
+.Theme--light {
+  background-color: $background-color-light;
 }

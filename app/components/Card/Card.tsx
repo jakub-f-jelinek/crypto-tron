@@ -12,6 +12,7 @@ interface CardProps {
   headerElements?: React.ReactNode[];
   contentElements?: React.ReactNode[];
   footerElements?: React.ReactNode[];
+  theme?: "light" | "dark";
 }
 
 export const Card: React.FC<CardProps> = ({
@@ -22,9 +23,14 @@ export const Card: React.FC<CardProps> = ({
   headerElements = [],
   contentElements = [],
   footerElements = [],
+  theme = "dark",
 }) => {
   return (
-    <div id={id} key={id} className={classNames(styles.Card, className)}>
+    <div
+      id={id}
+      key={id}
+      className={classNames(styles.Card, styles[`Theme--${theme}`], className)}
+    >
       <div className={styles.Header}>{headerElements}</div>
       <div className={styles.TitleWrapper}>
         <h4 className={styles.Title}>{title}</h4>
