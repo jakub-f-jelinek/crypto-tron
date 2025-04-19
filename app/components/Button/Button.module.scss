@@ -42,12 +42,6 @@
   text-transform: uppercase;
 }
 
-button:disabled {
-  &:hover {
-    cursor: not-allowed;
-  }
-}
-
 .Button.Secondary {
   background-color: transparent;
 
