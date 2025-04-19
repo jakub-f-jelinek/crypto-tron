@@ -1,8 +1,9 @@
 "use client";
 
-import { useData } from "../../hooks/Provider";
+// import { useData } from "../../hooks/Provider";
 import { CalculatorCard } from "./CalculatorCard";
 import styles from "./Calculator.module.scss";
+import { useAppSelector } from "@/app/redux/hooks";
 export interface HandleCountParams {
   id: string;
   count?: number | string;
@@ -11,7 +12,8 @@ export interface HandleCountParams {
 }
 
 export const Calculator = () => {
-  const { items } = useData();
+  // const { items } = useData();
+  const items = useAppSelector((state) => state.coins.items);
 
   return (
     <div className={styles.Wrapper}>

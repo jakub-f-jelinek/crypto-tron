@@ -5,6 +5,7 @@ import "./styles/utils/page.scss";
 import QueryProvider from "./hooks/QueryProvider";
 import { DataProvider } from "./hooks/Provider";
 import { Header } from "./components/Header/Header";
+import ReduxProvider from "./redux/ReduxProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +31,10 @@ export default function RootLayout({
     <html lang="cs">
       <body>
         <QueryProvider>
-          <DataProvider>
+          <ReduxProvider>
             <Header />
             <main>{children}</main>
-          </DataProvider>
+          </ReduxProvider>
         </QueryProvider>
       </body>
     </html>

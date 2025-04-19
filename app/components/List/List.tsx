@@ -13,13 +13,22 @@ import { Card } from "../Card/Card";
 import { Text } from "../Text/Text";
 import "../../styles/utils/page.scss";
 import styles from "./List.module.scss";
+import {
+  addItem,
+  totalCalculatorValue,
+  totalProfit,
+} from "../../redux/CoinSlice";
+import { useAppDispatch, useAppSelector } from "@/app/redux/hooks";
+import { useDispatch } from "react-redux";
 
 export default function List() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
   const { data, isLoading, error } = useFetchData();
+  const items = useAppSelector((state) => state.coins.items);
+  const dispatch = useAppDispatch();
 
-  const { items, addItem, totalCalculatorValue, totalProfit } = useData();
+  // const { items, addItem, totalCalculatorValue, totalProfit } = useData();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -30,12 +39,16 @@ export default function List() {
     setSortOrder(null);
   };
 
-  const handleAdd = useCallback(
-    (item: CoinData) => {
-      addItem(item);
-    },
-    [addItem]
-  );
+  const handleAdd = (coin: CoinData) => {
+    dispatch(addItem(coin));
+  };
+
+  // const handleAdd = useCallback(
+  //   (item: CoinData) => {
+  //     addItem(item);
+  //   },
+  //   [addItem]
+  // );
 
   const sortedAndFilteredData = useMemo(() => {
     if (!data) return [];
@@ -53,8 +66,10 @@ export default function List() {
     return result;
   }, [data, search, sortOrder]);
 
-  const total = totalCalculatorValue();
-  const sumProfit = totalProfit();
+  // const total = totalCalculatorValue(items);
+  // const sumProfit = totalProfit(items);
+  const total = useAppSelector(totalCalculatorValue);
+  const sumProfit = useAppSelector(totalProfit);
 
   if (isLoading) return <div>Načítám...</div>;
   if (error) return <div>{error.message}</div>;

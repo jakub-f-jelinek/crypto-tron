@@ -15,10 +15,13 @@ import styles from "./ItemDetail.module.scss";
 import "../../styles/utils/page.scss";
 import classNames from "classnames";
 import Link from "next/link";
+import { useAppSelector } from "@/app/redux/hooks";
+import { addItem } from "@/app/redux/CoinSlice";
 
 export default function ItemDetail({ id }: { id: string }) {
   const { isLoading, error, data } = useFetchData();
-  const { items, addItem } = useData();
+  // const { items, addItem } = useData();
+  const items = useAppSelector((state) => state.coins.items);
 
   const handleAdd = useCallback(
     (item: CoinData) => {

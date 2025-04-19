@@ -6,20 +6,26 @@ import { Input } from "../Input/Input";
 import { Card } from "../Card/Card";
 import classNames from "classnames";
 import { Text } from "../Text/Text";
-import {
-  handleCountChange,
-  handleInvestmentChange,
-  handleRemove,
-} from "../Text/utils";
+
 import { CoinData } from "@/app/utils/types";
 import { useData } from "@/app/hooks/Provider";
+import { useAppSelector } from "@/app/redux/hooks";
+import { removeItem, updateItem } from "../../redux/CoinSlice";
+import {
+  useHandleCountChange,
+  useHandleInvestmentChange,
+  useHandleRemove,
+} from "@/app/utils/utils";
 
 interface CalculatorCardProps {
   item: CoinData;
 }
 
 export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
-  const { items, removeItem, updateItem } = useData();
+  const items = useAppSelector((state) => state.coins.items);
+  const handleRemove = useHandleRemove();
+  const handleCountChange = useHandleCountChange();
+  const handleInvestmentChange = useHandleInvestmentChange();
 
   return (
     <div>
@@ -47,7 +53,7 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
               size="iconBox"
               iconName="IoClose"
               iconColor="light"
-              onClick={() => handleRemove(item.id, removeItem)}
+              onClick={() => handleRemove(item.id)}
             />
           </div>,
         ]}
@@ -76,11 +82,10 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
                 type="number"
                 value={item.count}
                 onChange={(e) =>
-                  handleCountChange(
-                    { id: item.id, count: e.target.value },
-                    items,
-                    updateItem
-                  )
+                  handleCountChange({
+                    id: item.id,
+                    count: Number(e.target.value),
+                  })
                 }
               />
               <Text
@@ -94,12 +99,7 @@ export const CalculatorCard: React.FC<CalculatorCardProps> = ({ item }) => {
                 type="number"
                 value={item.startInvestmentValue}
                 onChange={(e) =>
-                  handleInvestmentChange(
-                    item.id,
-                    Number(e.target.value),
-                    items,
-                    updateItem
-                  )
+                  handleInvestmentChange(item.id, Number(e.target.value))
                 }
               />
 
