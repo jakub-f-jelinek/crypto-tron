@@ -8,7 +8,7 @@ import { Card } from "@/app/components/Card/Card";
 import { Icon } from "@/app/components/Icon/Icon";
 import { Text } from "@/app/components/Text/Text";
 import { Button } from "@/app/components/Button/Button";
-import { CalculatorCard } from "@/app/components/CalculatorComp/CalculatorCard";
+import { CalculatorCard } from "@/app/components/Calculator/CalculatorCard";
 import { useCallback } from "react";
 
 import styles from "./ItemDetail.module.scss";
