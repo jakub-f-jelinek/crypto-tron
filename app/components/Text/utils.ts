@@ -1,5 +1,5 @@
 import { CoinData } from "@/app/utils/types";
-import { HandleCountParams } from "../Calculator/Calculator";
+import { HandleCountParams } from "../CalculatorComp/Calculator";
 
 type UpdateItemFn = (item: {
   id: string;
