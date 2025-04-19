@@ -33,8 +33,7 @@ export const handleCountChange = (
   const itemPrice = currentItem.current_price ?? 0;
   const totalValue = itemPrice * newCount;
   const startValue = currentItem.startInvestmentValue ?? 0;
-  const profitCoin = totalValue - startValue;
-
+  const profitCoin = startValue !== 0 ? totalValue - startValue : 0;
   updateItem({
     id,
     count: newCount,
@@ -55,7 +54,7 @@ export const handleInvestmentChange = (
 
   const count = currentItem.count ?? 0;
   const totalValue = (currentItem.current_price ?? 0) * count;
-  const profitCoin = totalValue - newInvestment;
+  const profitCoin = newInvestment !== 0 ? totalValue - newInvestment : 0;
 
   updateItem({
     id,

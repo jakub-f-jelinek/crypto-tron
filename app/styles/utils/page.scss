@@ -47,6 +47,10 @@ main {
   width: 70%;
 }
 
+.col-66 {
+  width: calc((100% / 3) * 2);
+}
+
 .col-60 {
   width: 60%;
 }

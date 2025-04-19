@@ -86,4 +86,15 @@ button:disabled {
 .Button.Link {
   background-color: transparent;
   border: none;
+  padding-inline: 0;
+
+  .ButtonTitle {
+    color: #fff;
+  }
+
+  &:hover {
+    .ButtonTitle {
+      color: $component-color;
+    }
+  }
 }

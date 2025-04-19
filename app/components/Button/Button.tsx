@@ -11,6 +11,7 @@ interface ButtonProps {
   size?: "sm" | "md" | "iconBox";
   iconPositon?: "before" | "after";
   iconColor?: "light" | "dark";
+  className?: string;
 }
 
 export const Button: React.FC<ButtonProps> = ({
@@ -22,6 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   size,
   iconPositon,
   iconColor,
+  className,
 }) => {
   return (
     <button
@@ -29,6 +31,7 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={classNames(
         styles.Button,
+        className,
         disabled ? styles.Disabled : "",
         {
           [styles.Primary]: variant === "primary",
@@ -52,7 +55,7 @@ export const Button: React.FC<ButtonProps> = ({
         <span className={styles.ButtonTitle}>{title}</span>
         {iconName && (
           <span className={styles.Icon}>
-            <Icon name={iconName} color={iconColor} />
+            <Icon name={iconName} color={iconColor} className={styles.Icon} />
           </span>
         )}
       </div>

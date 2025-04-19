@@ -18,22 +18,6 @@ export const Header: React.FC<HeaderProps> = (props) => {
           iconPositon="before"
         />
       </Link>
-      <Link href="/calculator">
-        <Button
-          variant="primary"
-          size="iconBox"
-          iconName="IoCalculator"
-          iconPositon="before"
-        />
-      </Link>
-      <Link href="/statistics">
-        <Button
-          variant="primary"
-          size="iconBox"
-          iconName="FaChartPie"
-          iconPositon="before"
-        />
-      </Link>
     </div>
   );
 };

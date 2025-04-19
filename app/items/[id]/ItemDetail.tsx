@@ -14,17 +14,11 @@ import { useCallback } from "react";
 import styles from "./ItemDetail.module.scss";
 import "../../styles/utils/page.scss";
 import classNames from "classnames";
+import Link from "next/link";
 
 export default function ItemDetail({ id }: { id: string }) {
   const { isLoading, error, data } = useFetchData();
   const { items, addItem } = useData();
-
-  if (isLoading) return <div>Is loading...</div>;
-  if (error) return <div>Error</div>;
-
-  const item = data.find((item: CoinData) => item.id === id);
-  const itemCalculator = items.find((item: CoinData) => item.id === id);
-  console.log(item);
 
   const handleAdd = useCallback(
     (item: CoinData) => {
@@ -33,58 +27,64 @@ export default function ItemDetail({ id }: { id: string }) {
     [addItem]
   );
 
+  if (isLoading) return <div>Načítám...</div>;
+  if (error || !data) return <div>Chyba při načítání dat</div>;
+
+  const item = data.find((item: CoinData) => item.id === id);
+  if (!item) return <div>Item nenalezen</div>;
+
+  const itemCalculator = items.find((item: CoinData) => item.id === id);
+
   return (
     <div className={styles.Container}>
       <div className={styles.Header}>
-        <Button
-          title="Zpět"
-          variant="link"
-          iconName="FaArrowLeft"
-          iconPositon="before"
-        />
         <div className={classNames("col-33", styles.HeaderInfo)}>
+          <Link href="/">
+            <Button
+              variant="link"
+              size="iconBox"
+              iconName="FaArrowLeft"
+              iconPositon="before"
+              iconColor="light"
+              className={styles.ButtonOutline}
+            />
+          </Link>
           <img className={styles.ItemImg} src={item.image} alt={item.name} />
-          <span>{item.symbol}</span>
-        </div>
-        <h1>{item.name}</h1>
-        {/* calculator item component */}
-        <div className="col-66">
-          {itemCalculator !== undefined ? (
-            <CalculatorCard item={itemCalculator} />
-          ) : (
+          <span>
+            {item.symbol} #{item.market_cap_rank}
+          </span>
+          <h1>{item.name}</h1>
+          <div className={styles.Col}>
+            <Icon name="FaCoins" color="component" size={18} />
+            <Text type="span" subtitle="Aktuální cena" subtitleSize="sm" />
+            <Text
+              type="h3"
+              title={item.current_price}
+              subtitle="CZK"
+              subtitleSize="md"
+              subtitlePosition="after"
+            />
+          </div>
+          {!itemCalculator && (
             <Button
               variant="primary"
               title="Přidat"
-              iconName="FaPLus"
+              iconName="FaPlus"
               iconPositon="after"
               iconColor="dark"
               onClick={() => handleAdd(item)}
             />
           )}
         </div>
+
+        <div className="col-66">
+          {itemCalculator && <CalculatorCard item={itemCalculator} />}
+        </div>
       </div>
 
       <div className={styles.Main}>
         <Card
-          className="col-33"
-          theme="light"
-          headerElements={[
-            <div key="priceBox" className={styles.Col}>
-              <Icon name="FaCoins" color="component" size={18} />
-              <Text type="span" subtitle="Aktuální cena" subtitleSize="sm" />
-              <Text
-                type="span"
-                title={item.current_price}
-                subtitle="CZK"
-                subtitleSize="sm"
-                subtitlePosition="after"
-              />
-            </div>,
-          ]}
-        />
-
-        <Card
-          className="col-33"
+          className={classNames("col-33", styles.Card)}
           theme="light"
           headerElements={[
             <div key="priceChange" className={styles.Col}>
@@ -97,7 +97,7 @@ export default function ItemDetail({ id }: { id: string }) {
                 size="sm"
                 subtitleSize="sm"
                 subtitlePosition="after"
-                numberColor={true}
+                numberColor
               />
               <Text
                 type="span"
@@ -106,13 +106,14 @@ export default function ItemDetail({ id }: { id: string }) {
                 size="sm"
                 subtitleSize="sm"
                 subtitlePosition="after"
-                numberColor={true}
+                numberColor
               />
             </div>,
           ]}
         />
+
         <Card
-          className="col-33"
+          className={classNames("col-33", styles.Card)}
           theme="light"
           headerElements={[
             <div key="highLow" className={styles.Col}>
@@ -143,28 +144,20 @@ export default function ItemDetail({ id }: { id: string }) {
         />
 
         <Card
-          className="col-100"
+          className={classNames("col-33", styles.Card)}
           theme="light"
           headerElements={[
-            <div key="highLow" className={styles.Col}>
-              <Icon name="FaChartBar" color="component" size={18} />
+            <div key="marketCap" className={styles.Col}>
+              <Icon name="IoCashOutline" color="component" size={18} />
               <Text
                 type="span"
-                subtitle="Denní maximum a minimum"
+                subtitle="Tržní kapitalizace"
                 subtitleSize="sm"
               />
               <Text
                 type="span"
-                title={item.high_24h}
-                subtitle="CZK (max)"
-                size="sm"
-                subtitleSize="sm"
-                subtitlePosition="after"
-              />
-              <Text
-                type="span"
-                title={item.low_24h}
-                subtitle="CZK (min)"
+                title={item.market_cap}
+                subtitle="CZK"
                 size="sm"
                 subtitleSize="sm"
                 subtitlePosition="after"

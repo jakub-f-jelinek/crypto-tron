@@ -47,16 +47,3 @@
     color: #808893;
   }
 }
-
-.Divider {
-  width: 100%;
-  height: 8px;
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-}

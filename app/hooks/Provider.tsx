@@ -90,10 +90,6 @@ export const DataProvider = ({ children }: Props) => {
       0
     );
 
-    // TODO: #1 formatter
-    // TODO: #2 condition
-    // TODO: #3 currency ?
-
     return sumTotal;
   };
 

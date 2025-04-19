@@ -17,8 +17,8 @@ import styles from "./List.module.scss";
 export default function List() {
   const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState<"asc" | "desc" | null>(null);
-
   const { data, isLoading, error } = useFetchData();
+
   const { items, addItem, totalCalculatorValue, totalProfit } = useData();
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,11 +53,12 @@ export default function List() {
     return result;
   }, [data, search, sortOrder]);
 
-  if (isLoading) return <div>loading...</div>;
-  if (error) return <div>{error.message}</div>;
-
   const total = totalCalculatorValue();
   const sumProfit = totalProfit();
+
+  if (isLoading) return <div>Načítám...</div>;
+  if (error) return <div>{error.message}</div>;
+  if (!data) return <div>Chyba při načítání dat</div>;
 
   return (
     <>
@@ -69,6 +70,7 @@ export default function List() {
             theme="light"
             headerElements={[
               <Text
+                key="itemsCount"
                 type="span"
                 size="sm"
                 subtitlePosition="up"
@@ -85,6 +87,7 @@ export default function List() {
             theme="light"
             headerElements={[
               <Text
+                key="calculatorValue"
                 type="span"
                 size="sm"
                 subtitlePosition="up"
@@ -93,6 +96,7 @@ export default function List() {
             ]}
             footerElements={[
               <Text
+                key="profit"
                 type="span"
                 size="sm"
                 subtitlePosition="up"
@@ -109,13 +113,14 @@ export default function List() {
             theme="light"
             headerElements={[
               <Text
+                key="profitChart"
                 type="span"
                 size="sm"
                 subtitlePosition="up"
                 subtitle="Zisk kalkulačky"
               />,
             ]}
-            contentElements={[<Chart data={items} />]}
+            contentElements={[<Chart key="chartCalculator" data={items} />]}
           />
         </div>
       </div>
