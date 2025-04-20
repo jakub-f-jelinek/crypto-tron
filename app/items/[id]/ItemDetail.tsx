@@ -17,18 +17,16 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useAppSelector } from "@/app/redux/hooks";
 import { addItem } from "@/app/redux/CoinSlice";
+import { useDispatch } from "react-redux";
 
 export default function ItemDetail({ id }: { id: string }) {
   const { isLoading, error, data } = useFetchData();
-  // const { items, addItem } = useData();
   const items = useAppSelector((state) => state.coins.items);
+  const dispatch = useDispatch();
 
-  const handleAdd = useCallback(
-    (item: CoinData) => {
-      addItem(item);
-    },
-    [addItem]
-  );
+  const handleAdd = (coin: CoinData) => {
+    dispatch(addItem(coin));
+  };
 
   if (isLoading) return <div>Načítám...</div>;
   if (error || !data) return <div>Chyba při načítání dat</div>;

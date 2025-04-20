@@ -48,19 +48,18 @@ const coinSlice = createSlice({
       );
     },
     updateItem: (state, action: PayloadAction<UpdateItemPayload>) => {
-      state.items = recalculatePercentages(
-        state.items.map((item) =>
-          item.id === action.payload.id
-            ? {
-                ...item,
-                count: action.payload.count,
-                totalValue: action.payload.totalValue,
-                startInvestmentValue: action.payload.startInvestmentValue,
-                profit: action.payload.profitCoin,
-              }
-            : item
-        )
+      const items = state.items.map((item) =>
+        item.id === action.payload.id
+          ? {
+              ...item,
+              count: action.payload.count,
+              totalValue: action.payload.totalValue,
+              startInvestmentValue: action.payload.startInvestmentValue,
+              profit: action.payload.profitCoin,
+            }
+          : item
       );
+      state.items = recalculatePercentages(items);
     },
   },
 });

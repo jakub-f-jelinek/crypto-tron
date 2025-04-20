@@ -28,8 +28,6 @@ export default function List() {
   const items = useAppSelector((state) => state.coins.items);
   const dispatch = useAppDispatch();
 
-  // const { items, addItem, totalCalculatorValue, totalProfit } = useData();
-
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
@@ -42,13 +40,6 @@ export default function List() {
   const handleAdd = (coin: CoinData) => {
     dispatch(addItem(coin));
   };
-
-  // const handleAdd = useCallback(
-  //   (item: CoinData) => {
-  //     addItem(item);
-  //   },
-  //   [addItem]
-  // );
 
   const sortedAndFilteredData = useMemo(() => {
     if (!data) return [];
@@ -66,8 +57,6 @@ export default function List() {
     return result;
   }, [data, search, sortOrder]);
 
-  // const total = totalCalculatorValue(items);
-  // const sumProfit = totalProfit(items);
   const total = useAppSelector(totalCalculatorValue);
   const sumProfit = useAppSelector(totalProfit);
 
